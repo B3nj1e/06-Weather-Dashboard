@@ -19,7 +19,8 @@ searchBtn.addEventListener("click", function (event) {
     cityCount++
     console.log(cityCount);
     saveCity();
-    getApi();
+    getCurrentWeatherApi();
+    getUvApi();
     // renderCity();
 });
 
@@ -64,7 +65,7 @@ function renderCity() {
     }
 };
 
-function getApi() {
+function getCurrentWeatherApi() {
     var cityName = citySearch.value;
     console.log(cityName);
     var ApiKey = "3d90a22a5cc7a81125427869e7407c8d";
@@ -78,17 +79,14 @@ function getApi() {
         .then(function (data) {
             console.log(data);
             console.log(data.main.temp);
-            var utcToday = data.sys.sunrise;
-            console.log(utcToday);
-            var dateToday = new Date(0);
-            dateToday.setUTCSeconds(utcToday);
-            console.log(dateToday);
             var currentTitle = document.createElement("h2");
             var currentIcon = document.createElement("img");
             var currentTemp = document.createElement("p");
             var currentWind = document.createElement("p");
             var currentHumidity = document.createElement("p");
-            // var currentUv = document.createElement("p");
+            console.log(data.coord.lat);
+            localStorage.setItem("currentLat", JSON.stringify(data.coord.lat));
+            localStorage.setItem("currentLon", JSON.stringify(data.coord.lon));
 
             currentIcon.setAttribute("src", iconUrl + data.weather[0].icon + ".png");
             currentTitle.textContent = cityName + today.format("DD-MM-YYYY");
@@ -104,4 +102,32 @@ function getApi() {
             currentWeather.appendChild(currentHumidity);
             // currentWeather.appendChild();
         });
-}
+};
+
+function getUvApi() {
+    var currentLat = JSON.parse(localStorage.getItem("currentLat"));
+    var currentLon = JSON.parse(localStorage.getItem("currentLon"));
+    var ApiKey = "3d90a22a5cc7a81125427869e7407c8d";
+    var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + currentLat + '&lon=' + currentLon + '&appid=' + ApiKey;
+
+    fetch(requestUrl)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+            var uvNow = data.current.uvi
+            var currentUv = document.createElement("p");
+
+            if (uvNow > 7) {
+                currentUv.setAttribute("class", "Uv-red");
+            } else if (uvNow < 3) {
+                currentUv.setAttribute("class", "Uv-green");
+            } else {
+                currentUv.setAttribute("class", "Uv-orange");
+            };
+
+        currentUv.textContent = "UV index: " + uvNow;
+        currentWeather.appendChild(currentUv);
+        });
+};

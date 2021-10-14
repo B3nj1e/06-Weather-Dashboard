@@ -73,3 +73,24 @@ form {
     padding: 1%;
     margin: 5px;
 }
+
+.Uv-red {
+    padding: 2%;
+    background-color: red;
+    width: 130px;
+    border-radius: 10px;
+}
+
+.Uv-orange {
+    padding: 2%;
+    background-color: orange;
+    width: 130px;
+    border-radius: 10px;
+}
+
+.Uv-green {
+    padding: 2%;
+    background-color: green;
+    width: 130px;
+    border-radius: 10px;
+}
