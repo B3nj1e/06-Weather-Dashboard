@@ -3,7 +3,7 @@ console.log("test");
 var citySearch = document.querySelector('#city');
 var searchBtn = document.querySelector('.searchBtn');
 var searchHistory = document.querySelector('.history');
-var searchedCityBtn = document.createElement("button");
+// var searchedCityBtn = document.createElement("button");
 
 var cityCount = [];
 
@@ -32,6 +32,7 @@ function saveCity() {
 
     if (cityValue !== null) {
         localStorage.setItem("city".concat(cityCount), JSON.stringify(cityValue));
+        var searchedCityBtn = document.createElement("button");
         searchedCityBtn.setAttribute("type", "submit");
         searchedCityBtn.setAttribute("class", "btn btn-primary mb-3 historyBtn");
         searchedCityBtn.textContent = cityValue;
