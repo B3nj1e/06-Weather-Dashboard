@@ -1,9 +1,8 @@
-console.log("test");
-
 var citySearch = document.querySelector('#city');
 var searchBtn = document.querySelector('.searchBtn');
 var searchHistory = document.querySelector('.history');
 var currentWeather = document.querySelector('.city-temp')
+var today = moment();
 
 var cityCount = JSON.parse(localStorage.getItem("cityCount"));
 
@@ -70,6 +69,7 @@ function getApi() {
     console.log(cityName);
     var ApiKey = "3d90a22a5cc7a81125427869e7407c8d";
     var requestUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=metric&appid=' + ApiKey;
+    var iconUrl = "http://openweathermap.org/img/w/";
 
     fetch(requestUrl)
         .then(function (response) {
@@ -77,7 +77,31 @@ function getApi() {
         })
         .then(function (data) {
             console.log(data);
+            console.log(data.main.temp);
+            var utcToday = data.sys.sunrise;
+            console.log(utcToday);
+            var dateToday = new Date(0);
+            dateToday.setUTCSeconds(utcToday);
+            console.log(dateToday);
+            var currentTitle = document.createElement("h2");
+            var currentIcon = document.createElement("img");
+            var currentTemp = document.createElement("p");
+            var currentWind = document.createElement("p");
+            var currentHumidity = document.createElement("p");
+            // var currentUv = document.createElement("p");
 
+            currentIcon.setAttribute("src", iconUrl + data.weather[0].icon + ".png");
+            currentTitle.textContent = cityName + today.format("DD-MM-YYYY");
+            currentTemp.textContent = "Temperature: " + data.main.temp + " °C";
+            currentWind.textContent = "Wind: " + data.wind.speed + " knots";
+            currentHumidity.textContent = "Humidity: " + data.main.humidity + " %";
+            // // currentUv = data;
 
-        })
+            currentWeather.appendChild(currentTitle);
+            currentTitle.appendChild(currentIcon);
+            currentWeather.appendChild(currentTemp);
+            currentWeather.appendChild(currentWind);
+            currentWeather.appendChild(currentHumidity);
+            // currentWeather.appendChild();
+        });
 }
