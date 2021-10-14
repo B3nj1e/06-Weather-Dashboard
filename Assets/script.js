@@ -3,6 +3,7 @@ console.log("test");
 var citySearch = document.querySelector('#city');
 var searchBtn = document.querySelector('.searchBtn');
 var searchHistory = document.querySelector('.history');
+var currentWeather = document.querySelector('.city-temp')
 
 var cityCount = JSON.parse(localStorage.getItem("cityCount"));
 
@@ -19,6 +20,7 @@ searchBtn.addEventListener("click", function (event) {
     cityCount++
     console.log(cityCount);
     saveCity();
+    getApi();
     // renderCity();
 });
 
@@ -57,16 +59,25 @@ function renderCity() {
             searchedCityBtn.setAttribute("class", "btn btn-primary mb-3 historyBtn");
             searchedCityBtn.textContent = savedCity;
             searchHistory.appendChild(searchedCityBtn);
-
-
-            //     console.log(searchedCityBtn);
-            //     // var searchedCity = document.innerHTML(savedCity);
-            //     // console.log(searchedCity);
-            //     // searchHistory.textContent = savedCity;
-            //     // searchHistory.appendChild(searchedCity);
         } else {
             return;
         }
     }
-    // searchHistory.appendChild("<button type='submit' class='btn btn-primary mb-3 " + savedCity + "'>" + savedCity + "</button>")
 };
+
+function getApi() {
+    var cityName = citySearch.value;
+    console.log(cityName);
+    var ApiKey = "3d90a22a5cc7a81125427869e7407c8d";
+    var requestUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=metric&appid=' + ApiKey;
+
+    fetch(requestUrl)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+
+
+        })
+}
