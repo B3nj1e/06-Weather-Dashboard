@@ -1,3 +1,4 @@
+/* setting styles for entire website */
 * {
     font-family: sans-serif;
     box-sizing: border-box;
@@ -5,9 +6,18 @@
     padding: 0;
 }
 
+/* formating header */
 header {
-    background-color: rgb(32, 32, 184);
+    background: linear-gradient(to right, rgb(52, 52, 207), rgb(89, 0, 116));
     color: white;
     text-align: center;
     padding: 2%;
+}
+
+/* .content {
+    display: flex;
+} */
+
+form {
+    padding: 3%;
 }
