@@ -16,17 +16,17 @@
         <h1>Weather Dashboard</h1>
     </header>
 
-    <div class="container">
-        <div class="row">
-            <form class="col-mb-3">
+    <div class="content">
+        <div class="rows">
+            <form id="form">
                 <h2>Search for a City:</h2>
-                <div class="col-mb-3">
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Adelaide">
+                <div class="mb-3">
+                    <input class="form-control" id="city" placeholder="Adelaide">
                 </div>
                 <button type="submit" class="btn btn-primary mb-3">Search</button>
             </form>
 
-            <div class="city-temp col-mb-8">
+            <div class="city-temp">
                 <!-- delete these elements (h2, p), they should be dynamically appended -->
                 <h2>City + date</h2>
                 <p>Temp</p>
@@ -36,32 +36,57 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="forecast-container col-mb-9">
-                <div class="forecast-1">
-                    <p>date</p>
-                    <i>itag</i>
-                    <p>humidity</p>
-                    <p>wind</p>
-                    <p>humdity</p>
+        <div class="rows">
+            <div class="history">
+                <p>blank text, append previous search buttons here</p>
+            </div>
+
+
+            <div class="forecast-container">
+
+                <h2>5 day Forecast</h2>
+
+                <div class="forecast-cards">
+                    <div class="forecast" id="1">
+                        <p>date</p>
+                        <i>itag</i>
+                        <p>humidity</p>
+                        <p>wind</p>
+                        <p>humdity</p>
+                    </div>
+
+                    <div class="forecast" id="2">
+                        <p>date</p>
+                        <i>itag</i>
+                        <p>humidity</p>
+                        <p>wind</p>
+                        <p>humdity</p>
+                    </div>
+
+                    <div class="forecast" id="3">
+                        <p>date</p>
+                        <i>itag</i>
+                        <p>humidity</p>
+                        <p>wind</p>
+                        <p>humdity</p>
+                    </div>
+
+                    <div class="forecast" id="4">
+                        <p>date</p>
+                        <i>itag</i>
+                        <p>humidity</p>
+                        <p>wind</p>
+                        <p>humdity</p>
+                    </div>
+
+                    <div class="forecast" id="5">
+                        <p>date</p>
+                        <i>itag</i>
+                        <p>humidity</p>
+                        <p>wind</p>
+                        <p>humdity</p>
+                    </div>
                 </div>
-
-                <div class="forecast-2">
-
-                </div>
-
-                <div class="forecast-3">
-
-                </div>
-
-                <div class="forecast-4">
-
-                </div>
-
-                <div class="forecast-5">
-
-                </div>
-
             </div>
         </div>
 
