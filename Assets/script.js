@@ -137,13 +137,12 @@ function getUvApi() {
         });
 };
 
-
+// fetching 5 day forecast API and populating the 5 forecast cards
 function getForecastApi() {
     var currentLat = JSON.parse(localStorage.getItem("currentLat"));
     var currentLon = JSON.parse(localStorage.getItem("currentLon"));
     var ApiKey = "3d90a22a5cc7a81125427869e7407c8d";
     var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + currentLat + '&lon=' + currentLon + '&units=metric&appid=' + ApiKey;
-    // var requestUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&units=metric&appid=' + ApiKey;
     var iconUrl = "http://openweathermap.org/img/w/";
 
     var forecastCard1 = document.getElementById("1");
@@ -162,37 +161,23 @@ function getForecastApi() {
             console.log(data.daily[1].temp.max);
 
             for (i = 1; i < 6; i++) {
-                // var forecastDate = document.createElement("h3");
+                var forecastDate = document.createElement("p");
                 var forecastIcon = document.createElement("img"); 
                 var forecastTemp = document.createElement("p");
                 var forecastWind = document.createElement("p");
                 var forecastHumidity = document.createElement("p");
 
-                // forecastDate.textContent = ;
+                forecastDate.textContent = today.add(1, "d").format("DD-MM-YYYY");
                 forecastIcon.setAttribute("src", iconUrl + data.daily[i].weather[0].icon + ".png");
                 forecastTemp.textContent = "Temp: " + data.daily[i].temp.max + "°C";
                 forecastWind.textContent = "Wind: " + data.daily[i].wind_speed + "knots";
                 forecastHumidity.textContent = "Humidity: " + data.daily[i].humidity + "%";
 
-                // forecastArray[i].appendChild(forecastDate);
+                forecastArray[i].appendChild(forecastDate);
                 forecastArray[i].appendChild(forecastIcon);
                 forecastArray[i].appendChild(forecastTemp);
                 forecastArray[i].appendChild(forecastWind);
                 forecastArray[i].appendChild(forecastHumidity);
             }
-//             console.log(data.main.temp);
-//             console.log(data.coord.lat);
-
-            // currentIcon.setAttribute("src", iconUrl + data.weather[0].icon + ".png");
-            // currentTitle.textContent = cityName + "   " + today.format("DD-MM-YYYY");
-            // currentTemp.textContent = "Temperature: " + data.main.temp + " °C";
-            // currentWind.textContent = "Wind: " + data.wind.speed + " knots";
-            // currentHumidity.textContent = "Humidity: " + data.main.humidity + " %";
-
-            // currentWeather.appendChild(currentTitle);
-            // currentTitle.appendChild(currentIcon);
-            // currentWeather.appendChild(currentTemp);
-            // currentWeather.appendChild(currentWind);
-            // currentWeather.appendChild(currentHumidity);
         });
 };
