@@ -18,16 +18,9 @@ var forecastCard4 = document.getElementById("4");
 var forecastCard5 = document.getElementById("5");
 var forecastArray = ["", forecastCard1, forecastCard2, forecastCard3, forecastCard4, forecastCard5];
 
-var date = document.getElementById("temp");
-var icon = document.getElementById("icon");
-var temp = document.getElementById("temp");
-var wind = document.getElementById("wind");
-var humidity = document.getElementById("humidity");
-
 var cityCount = JSON.parse(localStorage.getItem("cityCount"));
 
 var cityName = citySearch.value;
-var A = ["A", "B", "C", "D", "E"];
 
 console.log(citySearch);
 console.log(searchBtn);
