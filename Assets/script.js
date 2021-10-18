@@ -10,6 +10,7 @@ var currentTemp = document.createElement("p");
 var currentWind = document.createElement("p");
 var currentHumidity = document.createElement("p");
 var currentUv = document.createElement("p");
+var forcastCards = document.getElementsByClassName("forecast");
 
 var forecastCard1 = document.getElementById("1");
 var forecastCard2 = document.getElementById("2");
@@ -196,7 +197,7 @@ function getForecastApi() {
             console.log(data.daily[1].temp.max);
 
             for (i = 1; i < 6; i++) {
-    
+                forecastArray[i].innerHTML = "";
                 var forecastDate = document.createElement("p");
                 var forecastIcon = document.createElement("img");
                 var forecastTemp = document.createElement("p");
